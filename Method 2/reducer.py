@@ -17,12 +17,8 @@ for line in sys.stdin:
     try:
         count = int(count)
     except ValueError:
-        # count was not a number, so silently
-        # ignore/discard this line
         continue
 
-    # this IF-switch only works because Hadoop sorts map output
-    # by key (here: delay) before it is passed to the reducer
     if current_delay == delay:
         current_count += count
     else:
@@ -31,7 +27,6 @@ for line in sys.stdin:
         current_count = count
         current_delay = delay
 
-# do not forget to output the last delay 
 if current_delay == delay:
     print '%s\t%s' % (current_delay, current_count)
 

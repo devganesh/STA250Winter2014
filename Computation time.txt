@@ -1,1 +1,0 @@
-I ran my code with 2 clusters.  The computation time was 4 hours. (around 6 minutes per file)

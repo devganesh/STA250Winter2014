@@ -1,5 +1,6 @@
 library(parallel)
 library(snow)
+library(Hmisc)
 
 cat("\014")
 rm(list=ls())
@@ -25,7 +26,12 @@ rm(c1)
 closeAllConnections()
 
 
-mean=sum(statsTable$value*statsTable$frequency)/20161
+mean=sum(statsTable$value*statsTable$frequency)/sum(statsTable$frequency)
+cat("mean = ")
+cat(mean)
 
 sd=sqrt(sum(statsTable$frequency*(statsTable$value-mean)^2)/(sum(statsTable$freq)-1))
+cat("sd = ")
+cat(sd)
 
+wtd.quantile(statsTable$value, weights = statsTable$frequency)
